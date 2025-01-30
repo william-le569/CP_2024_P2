@@ -5,6 +5,22 @@
         "iterator": "cpp",
         "xtree": "cpp",
         "xutility": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "deque": "cpp",
+        "initializer_list": "cpp",
+        "list": "cpp",
+        "queue": "cpp",
+        "ranges": "cpp",
+        "span": "cpp",
+        "stack": "cpp",
+        "type_traits": "cpp",
+        "vector": "cpp",
+        "xstring": "cpp",
+        "chrono": "cpp",
+        "utility": "cpp",
+        "format": "cpp",
+        "forward_list": "cpp",
+        "xhash": "cpp",
+        "string": "cpp"
     }
 }
