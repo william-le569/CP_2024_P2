@@ -31,30 +31,30 @@
 // 5 7
 // 2 4 1 2 7
 
-// #include <bits/stdc++.h>
-// using namespace std;
+#include <bits/stdc++.h>
+using namespace std;
 
-// #define ll long long
+#define ll long long
 
-// const int mxN = 2e5;
-// int n;
-// ll x, a[mxN];
+const int mxN = 2e5;
+int n;
+ll x, a[mxN];
 
-// int main() {
-//     cin >> n >> x;
-//     ll s = 0;
-//     map<ll, int> mp;
-//     mp[0]++;
-//     ll ans=0;
-//     for(int i=0; i<n; ++i) {
-//         cin >> a[i];
-//         s+=a[i];
-//         ans+=mp[s-x];
-//         mp[s]++;
-//     }
-//     cout << ans;
-//     return 0;
-// }
+int main() {
+    cin >> n >> x;
+    ll s = 0;
+    map<ll, int> mp;
+    mp[0]++;
+    ll ans=0;
+    for(int i=0; i<n; ++i) {
+        cin >> a[i];
+        s+=a[i];
+        ans+=mp[s-x];
+        mp[s]++;
+    }
+    cout << ans;
+    return 0;
+}
 
 // 5 7
 // 2 4 1 2 7
@@ -96,45 +96,45 @@
 
 //-------------------
 // gpt solution
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-#define ll long long
+// #define ll long long
 
-const int mxN = 2e5;
-int arr[mxN];
+// const int mxN = 2e5;
+// int arr[mxN];
 
-int main() {
+// int main() {
 
 
-    int n;
-    cin >> n;
+//     int n;
+//     cin >> n;
 
-    ll target;
-    cin >> target;
+//     ll target;
+//     cin >> target;
 
-    // int arr[n];
-    for(int i=0; i<n; ++i) cin >> arr[i];
+//     // int arr[n];
+//     for(int i=0; i<n; ++i) cin >> arr[i];
 
-    // unordered_map<ll, int> prefix_count;
-    map<ll, int> prefix_count;
-    prefix_count[0] = 1;
-    ll prefix_sum = 0;
-    ll result = 0;
+//     // unordered_map<ll, int> prefix_count;
+//     map<ll, int> prefix_count;
+//     prefix_count[0] = 1;
+//     ll prefix_sum = 0;
+//     ll result = 0;
 
-    for (int i = 0; i < n; ++i) {
-        prefix_sum += arr[i];
+//     for (int i = 0; i < n; ++i) {
+//         prefix_sum += arr[i];
         
-        if (prefix_count.find(prefix_sum - target) != prefix_count.end()) {
-            result += prefix_count[prefix_sum - target];
-        }
+//         if (prefix_count.find(prefix_sum - target) != prefix_count.end()) {
+//             result += prefix_count[prefix_sum - target];
+//         }
 
-        prefix_count[prefix_sum]++;
-    }
+//         prefix_count[prefix_sum]++;
+//     }
 
-    cout << result << endl;
-    return 0;
-}
+//     cout << result << endl;
+//     return 0;
+// }
 
 // solve correct at sample
 // 6 7
