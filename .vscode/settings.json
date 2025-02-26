@@ -22,6 +22,10 @@
         "forward_list": "cpp",
         "xhash": "cpp",
         "string": "cpp",
-        "limits": "cpp"
+        "limits": "cpp",
+        "xiosbase": "cpp",
+        "optional": "cpp",
+        "system_error": "cpp",
+        "xtr1common": "cpp"
     }
 }
