@@ -69,14 +69,22 @@ int main() {
     }
     sort(projects.begin(), projects.end());
     set<pair<int, ll>> ends;
-    ends.insert({0, 0});
+    ends.insert({0, 0}); // {ending_time, reward};
     ll answer = 0;
     for(int i=0; i<n; ++i) {
         auto t = ends.lower_bound({projects[i].start, -1});
         t--;
         answer = max(answer, projects[i].value + t->second);
+        cout << answer << endl;
         ends.insert({projects[i].end, answer});
+        // cout << t << endl;
     }
     cout << answer;
     return 0;
 }
+
+// 4
+// 2 4 4
+// 3 6 6
+// 6 8 2
+// 5 7 3
