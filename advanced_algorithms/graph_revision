@@ -1,0 +1,146 @@
+CSES book
+Part II: Graph algorithms
+Chapter 11: Basics of graphs
+------------oo--------------
+
+Why is it a graph?
+Modeling the problem as a graph problem. The graph is hidden in the problem -> it maybe difficult to detect.
+
+Graph Structure:
+A graph consists of nodes and edges.
+number of nodes -> n
+number of edges -> m
+
+What is a path?
+A path leads from a to b through edges of the graph. The length of the path is the # of edges in it.
+
+Cycle characteristics of a path:
+A path is cyle if first node is the last node.
+
+Connectivity:
+A graph is connected if any two nodes of graph have a path(notice: a path not an edge).
+
+What is component?
+Connected path of a graph is called component.
+
+What is a tree?
+Tree is a connected graph with n nodes and n-1 edges. There is a unique path between any two nodes of a tree.
+
+Edge Direction
+A graph is directed if the edges can be tranversed in one direction only.
+
+Edge weight
+In a weighted graph, each edge is assigned a weight. The weights are often interpreted as edge length.
+
+Neighbors and degrees.
+Two nodes are neighbors or adjacent if there is an edge between them.
+
+The degree of a node is the number of its neighbors.
++ The sum of degrees in a graph is always 2*m (m is number of edges).
+
+
+A graph is regular if degree of every node is constant d.
+A graph is complete if degree of every node n-1.
+
+In directed graph, the indegree of a node is the number of edges that end at the node (the arrow head is pointed to node)
+the outdegree of a node is the number of edges that start at the node. (the shaft of arrow is start from the node)
+
+Colorings:
+Each node has the same color so that no adjacent nodes have the same color.
+
+A graph is bipartite if it is possible to color it using two colors.
+-> A graph is bipartite when it does not contain a cycle with an odd number of edges.
+
+Simplicity
+a graph is simple +if no edges starts and ends at the same nodes
++ no multiple edges between 2 nodes.
+
+
+Graph Representation:
+
+There are several ways to represent graph. 
+The choice of a datastructure depends on size of the graph and the way the algorithm processes it.
+
+Adjacency list representation:
+Each node x in the graph is assigned an adjacency list that consists of nodes to which there is an edge from x.
+
+A convenient way to store adjacency lists is to declare an array of vectors as follows:
+
+vector<int> adj[N];
+adj[1].push_back(2);
+adj[2].push_back(3);
+adj[2].push_back(4);
+adj[3].push_back(4);
+adj[4].push_back(1);
+
+(1) -> (2) -> (3)
+ ^      |      /
+  \     |     /
+   \    V    V
+    (   4   )
+
+For a weighted graph:
+
+(1) -[5]-> (2) -[7]-> (3)
+ ^         |           /
+2]\        |[6]       /[5]
+   \       V         V
+    (      4         )
+
+vector<pair<int, int>> adj[N];
+adj[1].push_back({2, 5});
+adj[2].push_back({3, 7});
+adj[2].push_back({6,4});
+adj[3].push_back({4, 5});
+adj[4].push_back({1, 2});
+
+for(auto u: adj[s]) {
+ // process node u
+}
+
+Adjacency matrix representation.
+
+Adjacency matrix is an 2 dimensional array that indicates which edges the graph contains. 
+We can check if there is an edge between 2 nodes. -> if yes -> 1 , if not -> 0
+
+int adj[N][N];
+
+(1) -> (2) -> (3)
+ ^      |      /
+  \     |     /
+   \    V    V
+    (   4   )
+
+
+    1 2  3 4
+1   |0|1|0|0|
+    --------
+2   |0|0|1|1|
+    --------
+3   |0|0|0|1|
+    ---------
+4   |1|0|0|0|
+
+Drawback of adjacency matrix is most of them is zero -> the representation cannot be used if the graph is large.
+
+Edge List Representation
+
+contain all edges of a graph in some order.
+
+vector<pair<int, int>> edges;
+
+edges.push_back({1, 2});
+edges.push_back({2, 3});
+edges.push_back({2, 4});
+edges.push_back({3, 4});
+edges.push_back({4, 1});
+
+if graph is weighted
+
+vector<tuple<int ,int, int>> edges;
+
+edges.push_back({1, 2, 5});
+edges.push_back({2,3,7});
+edges.push_back({2,4,6});
+edges.push_back({3,4,5});
+edges.push_back({4,1,2});
