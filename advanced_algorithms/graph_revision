@@ -52,7 +52,8 @@ A graph is bipartite if it is possible to color it using two colors.
 -> A graph is bipartite when it does not contain a cycle with an odd number of edges.
 
 Simplicity
-a graph is simple +if no edges starts and ends at the same nodes
+a graph is simple 
++ if no edges starts and ends at the same nodes
 + no multiple edges between 2 nodes.
 
 
@@ -83,7 +84,7 @@ For a weighted graph:
 
 (1) -[5]-> (2) -[7]-> (3)
  ^         |           /
-2]\        |[6]       /[5]
+[2]        |[6]       /[5]
    \       V         V
     (      4         )
 
@@ -120,6 +121,23 @@ int adj[N][N];
 3   |0|0|0|1|
     ---------
 4   |1|0|0|0|
+
+(1) -[5]-> (2) -[7]-> (3)
+ ^         |           /
+[2]        |[6]       /[5]
+   \       V         V
+    (      4         )
+
+    1 2  3 4
+1   |0|5|0|0|
+    --------
+2   |0|0|7|6|
+    --------
+3   |0|0|0|5|
+    ---------
+4   |2|0|0|0|
+
+adj[a][b] : length of edge from node a to node b.
 
 Drawback of adjacency matrix is most of them is zero -> the representation cannot be used if the graph is large.
 

@@ -26,6 +26,7 @@
         "xiosbase": "cpp",
         "optional": "cpp",
         "system_error": "cpp",
-        "xtr1common": "cpp"
+        "xtr1common": "cpp",
+        "tuple": "cpp"
     }
 }
