@@ -1,0 +1,81 @@
+
+Chapter 2: Graph traversal
+-------------oo------------
+
+DFS is a straightforward graph traversal technique. Two fundamental graph algorithms: depth-first-search (DFS) and breadth-first-search. 
+Both algorithms are given a starting node, and they visit all nodes that can be reached from the starting node.
+
+Depth First Search (DFS): 
+*General definition:
+The algorithm begins at a starting node, 
+and proceeds to all other nodes that are reachable from the starting node using the edges of the graph.
+*Main pattern of DFS:
+DFS always follows a single path in the graph as long as it finds new nodes. After this it returns to previous nodes
+and begins to explore other parts of the graph. 
+*WHY [visited node] IS IMPORTANT TO DFS?
+The algorithm keeps track of visited nodes, so that it processes
+each node only once.
+
+//DFS - simulation: https://www.youtube.com/shorts/n6U5kbez_WM
+
+Time complexity O(m + n)
+n : # of nodes
+m : # of edges
+
+Implementation DFS:
+
+DFS can be conveniently implemented using recursion. Why?
+Natural Backtracking: Recursion automatically handles the process of backtracking.
+Suitable with the main pattern of DFS: "DFS always follows a single path in the graph as long as it finds new nodes. After this it returns to previous nodes and begins to explore other parts of the graph"
+
+Implicit Use the Call stack: Recursive Call is stored in the Call Stack
+suitable to: the way DFS manage vertex exploration through Stack. (LIFO: Last In, First Out -> it is the last in then it's (the last-in guy) first out)
+
+Assumes the graph is stored in an adjacency list in an array
+    vector<int> adj[N];
+
+    bool visited[N];
+keeps track of the visited nodes. Each array value is false, and when the search arrives at node s -> value of visited[s] = true.
+
+void dfs(int s) {
+    if(visited[s]) return;
+    visited[s] = true;
+    for(auto u : adj[s]) {
+        dfs(u);
+    }
+}
+
+Breadth First Search (BFS)
+visits the nodes in increasing order of their distance from the starting node. -> we can calculate the distance from the starting node to all other nodes using BFS.
+BFS is more difficult to implement than DFS.
+
+*Distance: the minimum number of edges from starting node to particular node. - Shortest path length in unweighted graph.
+
+First the search explores the nodes whose distance from starting node is 1, then 2, and so on.
+
+Time complexity O(n + m).
+
+queue<int> q;
+bool visited[N];
+int distance[N];
+
+q contains nodes to be processed in increasing order of their distance. New nodes are always added to the end of the queue, and the node at beginning of the queue is the next to be processed. The array visited indicates which nodes the search has already visited. the array distance will contain the distances from starting node to all nodes
+of the graph.
+
+void bfs(int x) {
+    visited[x] = true;
+    distance[x] = 0;
+    q.push(x);
+    while (!q.empty()) {
+        int s = q.front(); q.pop();
+        // process node s
+        for (auto u : adj[s]) {
+            if (visited[u]) continue;
+            visited[u] = true;
+            distance[u] = distance[s]+1;
+            q.push(u);
+        }
+    }
+}
+
+In practice, DFS is better choice, because it is easier to implement.
