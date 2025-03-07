@@ -78,4 +78,6 @@ void bfs(int x) {
     }
 }
 
+Application:
+Traversal Algorithm to check properties of Graph.
 In practice, DFS is better choice, because it is easier to implement.
