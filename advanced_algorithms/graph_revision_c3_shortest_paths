@@ -1,0 +1,122 @@
+Chapter 13: Shortest Paths
+
+Finding shortest path between two nodes of a graph is an important problem that has many practical applications.
+
+Ex: to find shortest possible length between two cities.
+
+In an unweighted graph, the length of a path equals the number of its edges, and we simply use BFS to find shortest path.
+
+Weighted graph sophisticated algorithms are needed to find shortest paths.
+
+------------------------
+Bellman - Ford algorithm
+
+Bellman - Ford algorithm finds shortest paths from a starting node to all nodes of the graph.
+Algorithm can process all kinds of graph, provided that the graph does not contain a cycle with negative length.
+If the graph contains a negative cycle, the algorithm can detect this.
+
+A negative cycle is a cycle that has the sum of all lengths that is negative
+
+The algorithm keeps track of distances from the starting node to all nodes of the graph.
+Initially, the distance of the starting node is 0 and the distance to all other nodes in infinite. The algorithm reduces the distance by finding edges that shorten the paths until it is not possible to reduce any distance.
+
+How Bellman-Ford algorithm works in the following graph:
+
+(1,0) -------5--------(2, inf)
+  |  \                     |   \2
+  3   --------7---------   3    (5,inf)
+  |                      \ |   /2   
+(3, inf) ----1---------(4, inf)
+
+Each node of the graph is assigned a distance. Initially, the distance to the starting node is 0, and the distance
+to all other nodes is infinite.
+
+The algorithm searches for edges that reduce distances. First all edges from node 1 reduce distances.
+
+(1,0) -------5--------(2, inf)
+  |  \                     |   \2      
+  3   --------7---------   3    (5,inf)   
+  |                      \ |   /2   
+(3, inf) ----1---------(4, inf)
+
+        |
+        V
+(1,0) -------5--------(2, 5)
+  |  \                     |   \2
+  3   --------7---------   3    (5,inf)
+  |                      \ |   /2   
+(3, 3) ----1---------(4, 7)
+
+
+After this edge 2->5, 3->4
+
+(1,0) -------5--------(2, 5)
+  |  \                     |   \2
+  3   --------7---------   3    (5,7)
+  |                      \ |   /2   
+(3, 3) ----1---------(4, 4)
+
+Final change
+
+(1,0) -------5--------(2, 5)
+  |  \                     |   \2
+  3   --------7---------   3    (5,6)
+  |                      \ |   /2   
+(3, 3) ----1---------(4, 4)
+
+Implementation:
+
+The code assumes that the graph is stored as an edge list "edges" that consists of tuples of the form
+(a, b, w) meaning that there is an edge from node a to node b with weight w.
+
+The algorithm consists of n-1 rounds, and on each round, the algorithm goes through all edges of the graph
+and tries to reduce the distances. The algorithm constructs an array distance that will contain the distances
+from x to all nodes of the graph. The constant INF denotes an infinite distance.
+
+for(int i=1; i<=n; ++i) distance[i] = INF;
+distance[x] = 0;
+for(int i=1; i<=n-1; ++i) {
+  for(auto e : edges) {
+    int a, b, w;
+    tie(a, b, w) = e;
+    distance[b] = min(distance[b], distance[a]+w);
+  }
+}
+
+If there are no negative cycles in the graph, all distances are final after n - 1 rounds, because each shortest path
+can contain at most n-1 edges.
+
+Make algorithm more efficient is to stop the algorithm if no distance can be reduced during a round.
+
+Negative cycles
+
+Bellman-Ford can also be used to check if the graph contains a cycle with negative length.
+
+        (2)
+      3/ | \1
+    (1)  2  (4)
+      5\  |  /-7
+         (3)
+
+  2 -> 3 -> 4 -> length is -4.
+
+  If a graph contains a negative cycle, we can shorten infinitely many times any path contains the cycle
+  by repeating cycle again and again. Thus, the concept of shortest path is not meaningful in this situation.
+
+  Negative cycle can be detected by Bellman-Ford algorithm by running algorithm for n rounds.
+
+  If the last round reduces any distance, the graph contains a negative cycle.
+
+  SPFA Algorithm (Shortest Path Faster Algorithm)
+
+  SPFA algorithm is a variant of the Bellman–Ford algorithm, that is often more efficient than the original algorithm.
+
+The algorithm maintains a queue of nodes that might be used for reducing
+the distances. First, the algorithm adds the starting node x to the queue. Then,
+the algorithm always processes the first node in the queue, and when an edge
+a -> b reduces a distance, node b is added to the queue.
+
+The efficiency of the SPFA algorithm depends on the structure of the graph:
+the algorithm is often efficient, but its worst case time complexity is still O(nm)
+and it is possible to create inputs that make the algorithm as slow as the original
+Bellman–Ford algorithm.
