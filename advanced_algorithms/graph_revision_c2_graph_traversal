@@ -31,11 +31,11 @@ Suitable with the main pattern of DFS: "DFS always follows a single path in the 
 Implicit Use the Call stack: Recursive Call is stored in the Call Stack
 suitable to: the way DFS manage vertex exploration through Stack. (LIFO: Last In, First Out -> it is the last in then it's (the last-in guy) first out)
 
-Assumes the graph is stored in an adjacency list in an array
+Assumes the graph is stored in an adjacency list in an array - ADJACENCY LIST IN AN ARRAY
     vector<int> adj[N];
 
     bool visited[N];
-keeps track of the visited nodes. Each array value is false, and when the search arrives at node s -> value of visited[s] = true.
+keeps track of the visited nodes. Each array value is false, and when the search arrives at node s -> value of visited[s] = true. The code below:
 
 void dfs(int s) {
     if(visited[s]) return;
@@ -44,6 +44,52 @@ void dfs(int s) {
         dfs(u);
     }
 }
+*implement full code with chat gpt
+-----------------------------------
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<vector<int>> adj;  // Adjacency list
+vector<bool> visited;     // Visited array
+
+void dfs(int s) {
+    if (visited[s]) return;  // Base case: If already visited, return
+    visited[s] = true;       // Mark current node as visited
+    cout << "Visiting node: " << s << endl;  // Print for debugging
+    
+    for (int u : adj[s]) {  // Loop through neighbors
+        dfs(u);
+    }
+}
+
+int main() {
+    int n = 7;  // Number of nodes
+    adj.resize(n);
+    visited.resize(n, false);
+
+    // Sample edges (undirected graph)
+    // (1) ---> (2) ---> (4)
+    //  |        |
+    //  V        V
+    // (3)      (5)
+    //  |
+    //  V
+    // (6)
+    adj[1].push_back(2);
+    adj[1].push_back(3);
+    adj[2].push_back(4);
+    adj[2].push_back(5);
+    adj[3].push_back(6);
+
+    // Call DFS from node 1
+    dfs(1);
+
+    return 0;
+}
+
+------------------------
 
 Breadth First Search (BFS)
 visits the nodes in increasing order of their distance from the starting node. -> we can calculate the distance from the starting node to all other nodes using BFS.
@@ -57,14 +103,14 @@ Time complexity O(n + m).
 
 queue<int> q;
 bool visited[N];
-int distance[N];
+int dist[N];
 
-q contains nodes to be processed in increasing order of their distance. New nodes are always added to the end of the queue, and the node at beginning of the queue is the next to be processed. The array visited indicates which nodes the search has already visited. the array distance will contain the distances from starting node to all nodes
+q contains nodes to be processed in increasing order of their dist. New nodes are always added to the end of the queue, and the node at beginning of the queue is the next to be processed. The array visited indicates which nodes the search has already visited. the array dist will contain the dists from starting node to all nodes
 of the graph.
 
 void bfs(int x) {
     visited[x] = true;
-    distance[x] = 0;
+    dist[x] = 0;
     q.push(x);
     while (!q.empty()) {
         int s = q.front(); q.pop();
@@ -72,7 +118,7 @@ void bfs(int x) {
         for (auto u : adj[s]) {
             if (visited[u]) continue;
             visited[u] = true;
-            distance[u] = distance[s]+1;
+            dist[u] = dist[s]+1;
             q.push(u);
         }
     }
