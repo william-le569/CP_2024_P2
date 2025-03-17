@@ -137,11 +137,46 @@
 
 //----------------- attempt 3
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<vector<int>> adj;
+// vector<int> visited;
+
+// void dfs(int x) {
+//     if(visited[x]) return;
+//     visited[x] = true;
+//     cout << x << " ";
+//     for(int u : adj[x]) {
+//         dfs(u);
+//     }
+// }
+
+// int main()  {
+//     int n = 6;
+//     adj.resize(n+1);
+//     visited.resize(n+1, false);
+
+//     adj[1].push_back(2);
+//     adj[1].push_back(3);
+
+//     adj[2].push_back(4);
+//     adj[2].push_back(5);
+
+//     adj[3].push_back(6);
+
+//     dfs(1);
+
+//     return 0;
+// }
+
+//-------------- attempt 4 : Mar - 17 -25
+
 #include <bits/stdc++.h>
 using namespace std;
 
 vector<vector<int>> adj;
-vector<int> visited;
+vector<bool> visited;
 
 void dfs(int x) {
     if(visited[x]) return;
@@ -152,17 +187,15 @@ void dfs(int x) {
     }
 }
 
-int main()  {
-    int n = 6;
-    adj.resize(n+1);
-    visited.resize(n+1, false);
+int main() {
+    int n = 7;
+    adj.resize(n);
+    visited.resize(n, false);
 
     adj[1].push_back(2);
     adj[1].push_back(3);
-
     adj[2].push_back(4);
     adj[2].push_back(5);
-
     adj[3].push_back(6);
 
     dfs(1);

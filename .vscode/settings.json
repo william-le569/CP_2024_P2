@@ -27,6 +27,7 @@
         "optional": "cpp",
         "system_error": "cpp",
         "xtr1common": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "xlocinfo": "cpp"
     }
 }
