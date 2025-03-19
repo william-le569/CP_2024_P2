@@ -1,0 +1,14 @@
+
+Tree traversal
+
+use DFS to traverse a tree
+
+void dfs(int s, int e) {
+    // process node s
+    for (auto u : adj[s]) {
+        if (u != e) dfs(u, s);
+    }
+}
+
+function call starts the search at node x:
+dfs(x, 0);

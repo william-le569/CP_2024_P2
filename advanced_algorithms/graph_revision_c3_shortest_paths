@@ -234,3 +234,14 @@ while (!q.empty()) {
         }
     }
 }
+---------------------
+Floyd-Warshall algorithm
+
+The Floyd–Warshall algorithm4 provides an alternative way to approach the
+problem of finding shortest paths. Unlike the other algorithms of this chapter, it
+finds all shortest paths between the nodes in a single run.
+
+The algorithm maintains a two-dimensional array that contains distances
+between the nodes. First, distances are calculated only using direct edges between
+the nodes, and after this, the algorithm reduces distances by using intermediate
+nodes in paths.

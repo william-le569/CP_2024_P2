@@ -203,6 +203,8 @@
 
 //---------- attempt 4
 
+////--------- **************************------------------
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -229,32 +231,6 @@ void bfs(int x) {
     }
 }
 
-// mark visited after popping
-// void bfs(int x) {
-//     queue<int> q;
-//     q.push(x);
-//     // visited[x] = true;
-//     dist[x] = 0;
-//     while(!q.empty()) {
-//         int s = q.front();
-//         q.pop();
-//         if(!visited[s]) {
-//             visited[s] = true;
-//             cout << s << " " << dist[s] << endl;
-//         }
-//         // cout << s << " " << dist[s] << endl;
-//         for(auto u : adj[s]) {
-//             // if(visited[u]) continue;
-//             if(!visited[u]) {
-//                 // visited[u] = true;
-//                 dist[u] = dist[s] + 1;
-//                 q.push(u);
-//             }
-//         }
-//     }
-// }
-
-
 int main() {
     int n = 7;
     adj.resize(n);
@@ -270,6 +246,9 @@ int main() {
     bfs(1);
     return 0;
 }
+
+///---------------------***************----------------
+
 
 // #include <iostream>
 // #include <vector>
@@ -325,6 +304,58 @@ int main() {
 //     cin >> start;
 
 //     bfs(start);
+
+//     return 0;
+// }
+
+
+//--------- attempt Mar-17-25
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<vector<int>> adj;
+// vector<int> dist;
+// vector<bool> visited;
+
+// void bfs(int x) {
+//     queue<int> q;
+//     q.push(x);
+//     dist[x] = 0;
+//     // visited[x] = true;
+
+//     while(!q.empty()) {
+//         int s = q.front();
+//         q.pop();
+//         // if(!visited[x]) {
+//         //     cout << s << " " << dist[x] << endl;
+//         //     visited[x] = true;
+//         // }
+//         cout << s << " " << dist[s] << endl;
+//         for(auto u : adj[s]) {
+//             if(visited[u]) continue;
+//             visited[u] = true;
+//             dist[u] = dist[s] + 1;
+//             q.push(u);
+            
+//         }
+//     }
+// }
+
+
+// int main() {
+//     int n = 7;
+//     adj.resize(n);
+//     dist.resize(n, -1);
+//     visited.resize(n, false);
+
+//     adj[1].push_back(2);
+//     adj[1].push_back(3);
+//     adj[2].push_back(4);
+//     adj[2].push_back(5);
+//     adj[3].push_back(6);
+
+//     bfs(1);
 
 //     return 0;
 // }
