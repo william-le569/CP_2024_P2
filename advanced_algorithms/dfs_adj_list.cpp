@@ -172,6 +172,67 @@
 
 //-------------- attempt 4 : Mar - 17 -25
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<vector<int>> adj;
+// vector<bool> visited;
+
+// void dfs(int x) {
+//     if(visited[x]) return;
+//     visited[x] = true;
+//     cout << x << " ";
+//     for(int u : adj[x]) {
+//         dfs(u);
+//     }
+// }
+
+// int main() {
+//     int n = 7;
+//     adj.resize(n);
+//     visited.resize(n, false);
+
+//     adj[1].push_back(2);
+//     adj[1].push_back(3);
+//     adj[2].push_back(4);
+//     adj[2].push_back(5);
+//     adj[3].push_back(6);
+
+//     dfs(1);
+
+//     return 0;
+// }
+
+// ----- attempt R4 --- Mar 25 - 2025
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<bool> visited;
+// vector<vector<int>> adj;
+
+// void dfs(int x) {
+//     if(visited[x]) return;
+//     visited[x] = true;
+//     cout << x << " ";
+//     for(auto u : adj[x]) {
+//         dfs(u);
+//     }
+// }
+// int main() {
+//     int n = 7;
+//     adj.resize(7);
+//     visited.resize(7, false);
+//     adj[1].push_back(2);
+//     adj[1].push_back(3);
+//     adj[2].push_back(4);
+//     adj[2].push_back(5);
+//     dfs(1);
+//     return 0;
+// }
+
+// ------------ Attempt R5 : Ap - 10 - 25---------------
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -179,26 +240,22 @@ vector<vector<int>> adj;
 vector<bool> visited;
 
 void dfs(int x) {
+    // mark visited
     if(visited[x]) return;
-    visited[x] = true;
-    cout << x << " ";
-    for(int u : adj[x]) {
+    visited[x] = 1;
+    cout << x << endl;
+    for(auto u : adj[x]) {
         dfs(u);
     }
 }
 
 int main() {
-    int n = 7;
+    int n = 5;
     adj.resize(n);
     visited.resize(n, false);
-
     adj[1].push_back(2);
     adj[1].push_back(3);
     adj[2].push_back(4);
-    adj[2].push_back(5);
-    adj[3].push_back(6);
-
     dfs(1);
-
     return 0;
 }

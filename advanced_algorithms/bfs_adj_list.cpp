@@ -203,49 +203,49 @@
 
 //---------- attempt 4
 
-////--------- **************************------------------
+////--------- *************OFFICIAL*************------------------
 
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-vector<vector<int>> adj;
-vector<int> dist;
-vector<bool> visited;
+// vector<vector<int>> adj;
+// vector<int> dist;
+// vector<bool> visited;
 
-// mark as visited with first encounter.
-void bfs(int x) {
-    queue<int> q;
-    q.push(x);
-    visited[x] = true;
-    dist[x] = 0;
-    while(!q.empty()) {
-        int s = q.front();
-        q.pop();
-        cout << s << " " << dist[s] << endl;
-        for(auto u : adj[s]) {
-            if(visited[u]) continue;
-            visited[u] = true;
-            dist[u] = dist[s] + 1;
-            q.push(u);
-        }
-    }
-}
+// // mark as visited with first encounter.
+// void bfs(int x) {
+//     queue<int> q;
+//     q.push(x);
+//     visited[x] = true;
+//     dist[x] = 0;
+//     while(!q.empty()) {
+//         int s = q.front();
+//         q.pop();
+//         cout << s << " " << dist[s] << endl;
+//         for(auto u : adj[s]) {
+//             if(visited[u]) continue;
+//             visited[u] = true;
+//             dist[u] = dist[s] + 1;
+//             q.push(u);
+//         }
+//     }
+// }
 
-int main() {
-    int n = 7;
-    adj.resize(n);
-    visited.resize(n, false);
-    dist.resize(n, -1);
+// int main() {
+//     int n = 7;
+//     adj.resize(n);
+//     visited.resize(n, false);
+//     dist.resize(n, -1);
 
-    adj[1].push_back(2);
-    adj[1].push_back(3);
-    adj[2].push_back(4);
-    adj[2].push_back(5);
-    adj[3].push_back(6);
+//     adj[1].push_back(2);
+//     adj[1].push_back(3);
+//     adj[2].push_back(4);
+//     adj[2].push_back(5);
+//     adj[3].push_back(6);
 
-    bfs(1);
-    return 0;
-}
+//     bfs(1);
+//     return 0;
+// }
 
 ///---------------------***************----------------
 
@@ -359,3 +359,163 @@ int main() {
 
 //     return 0;
 // }
+
+//----------- R3
+
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<vector<int>> adj;
+// vector<bool> visited;
+// vector<int> dist;
+
+// void bfs(int x) {
+//     queue<int> q;
+//     q.push(x);
+//     dist[x] = 0;
+//     visited[x] = true;
+
+//     while(!q.empty()) {
+//         int s = q.front();
+//         q.pop();
+
+//         if(visited[s]) { 
+//             // visited[s] = true;
+//             cout << s << dist[s] << endl;
+//         }
+//         // cout << s << dist[s] << endl; // ngam hieu phan tu duoc pop ra tu queue auto duoc marked truoc do - co the la mark ngay luc push
+//         for(int u : adj[s]) {  
+//                 if(!visited[u]) {
+//                     dist[u] = dist[s] + 1;
+//                     visited[u] = true;
+//                     q.push(u);
+//                 }
+//                 // if(visited[u]) continue;
+//                 // visited[u] = true;
+//                 // dist[u] = dist[s] + 1;
+//                 // q.push(u);
+//         }
+//     }
+// }
+
+// int main() {
+//     // int n = 4;
+//     // adj.resize(n);
+//     // visited.resize(n, false);
+//     // dist.resize(n, -1);
+//     // adj[1].push_back(2);
+//     // adj[1].push_back(3);
+//     // bfs(1);
+
+//     int n = 7;
+//     adj.resize(n);
+//     dist.resize(n, -1);
+//     visited.resize(n, false);
+
+//     adj[1].push_back(2);
+//     adj[1].push_back(3);
+//     adj[2].push_back(4);
+//     adj[2].push_back(5);
+//     adj[3].push_back(6);
+
+//     bfs(1);
+//     return 0;
+// }
+
+//------------------ R4 --- Mar- 28 - 2025
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<vector<int>> adj;
+// vector<bool> visited;
+// vector<int> dist;
+
+// void bfs(int x) {
+//     queue<int> q;
+//     q.push(x);
+//     dist[x] = 0;
+//     visited[x] = true;
+
+//     while(!q.empty()) {
+//         int s = q.front();
+//         q.pop();
+//         if(visited[s]) {
+//             cout << s << " " << dist[s] << endl;
+//         }
+//         for(auto u : adj[s]) {
+//             if(!visited[u]) {
+//                 visited[u] = true;
+//                 q.push(u);
+//                 dist[u] = dist[s] + 1;
+//             }
+//         }
+//     }
+
+// }
+
+// int main() {
+//     int n = 4;
+//     adj.resize(n);
+//     visited.resize(n, false);
+//     dist.resize(n, -1);
+
+//     adj[1].push_back(2);
+//     adj[1].push_back(3);
+
+//     bfs(1);
+
+//     return 0;
+// }
+
+// -------------- R5 ----------------
+
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> adj;
+vector<bool> visited;
+vector<int> dist;
+
+void bfs(int x) {
+    queue<int> q;
+    q.push(x);
+    visited[x] = true;
+    dist[x] = 0;
+
+    while(!q.empty()) {
+        // front = q.pop();
+        int s = q.front();
+        q.pop();
+
+        if(visited[s]) cout << s << " " << dist[s] << endl;
+
+        for(auto u : adj[s]) {
+            if(!visited[u]) {
+                visited[u] = true;
+                dist[u] = dist[s] + 1;
+                q.push(u);
+            }
+        }
+
+    }
+
+}
+
+int main() {
+    int n = 6;
+    adj.resize(n);
+    dist.resize(n, -1);
+    visited.resize(n, false);
+
+    adj[1].push_back(2);
+    adj[1].push_back(3);
+
+    adj[2].push_back(4);
+    adj[2].push_back(5);
+
+    bfs(1);
+
+    return 0;
+}

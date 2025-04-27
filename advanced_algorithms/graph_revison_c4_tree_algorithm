@@ -1,6 +1,29 @@
+Chapter 14: Tree algorithms
+
+A tree is a connected, acyclic graph that consists of n nodes and n-1 edges. 
+Removing any edge from a tree divides it into two components.
+Add any edge to a tree create a cycle.
+There is always a unique path between 2 nodes of a tree.
+
+acyclic : Khong chu trinh
+
+The leaves of a tree are the nodes with degree 1. Only 1 neighbor.
+A rooted tree, one of the nodes is appointed the root of the tree, all other nodes are placed underneath the root.
+
+In a rooted tree:
++ children of a node is its lower neighbor
++ parent of a node is its upper neighbor. Each node has only one parent except the root.
+
+Structure of a node is recursive: each node of the tree acts as the root of a subtree that contains the node itself and all nodes
+that are in the subtrees of its children.
 
 Tree traversal
 
+General graph traversal algorithms can be used to traverse the nodes of a tree.
+Traversal of a tree is easier to implement than that of general graph, because there are no cycles in the tree and it is
+not possible to reach a node from multiple directions.
+
+A typical way to traverse a tree is to start a depth-first search at an arbitrary node.
 use DFS to traverse a tree
 
 void dfs(int s, int e) {
@@ -10,5 +33,20 @@ void dfs(int s, int e) {
     }
 }
 
+s : start or source
+e : excluded or parent
+
+The purpose of the parameter e is to make sure that the search only moves to nodes that have not been visited yet.
 function call starts the search at node x:
 dfs(x, 0);
+
+in the first call e = 0 -> because there is no previous node.
+
+void dfs(int s, int e) {
+    count[s] = 1;
+    for(auto u : adj[s]) {
+        if(u == e) continue;
+        dfs(u, s);
+        count[s] += count[u];
+    }
+}

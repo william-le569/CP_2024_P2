@@ -1,32 +1,32 @@
-// #include <bits/stdc++.h>
-// using namespace std;
+#include <bits/stdc++.h>
+using namespace std;
 
-// #define ll long long
+#define ll long long
 
-// struct project {
-//     int start;
-//     int end;
-//     int value;
-//     bool operator<(const project &other) const{
-//         return end < other.end;
-//     }
-// };
+struct project {
+    int start;
+    int end;
+    int value;
+    bool operator<(const project &other) const{
+        return end < other.end;
+    }
+};
 
-// int main() {
-//     int n;
-//     // cin >> n;
-//     n = 3;
-//     vector<project> projects(n);
-//     // for(int i=0; i<n; ++i) {
-//     //     cin >> projects[i].start >> projects[i].end >> projects[i].value;
-//     // }
-//     projects[0] = {3, 2, 3};
-//     projects[1] = {2, 2, 4};
-//     projects[2] = {1, 2, 3};
-//     sort(projects.begin(), projects.end());
-//     for(auto it : projects) cout << it.start << " " << it.end << " " << it.value << endl;
+int main() {
+    int n;
+    // cin >> n;
+    n = 3;
+    vector<project> projects(n);
+    // for(int i=0; i<n; ++i) {
+    //     cin >> projects[i].start >> projects[i].end >> projects[i].value;
+    // }
+    projects[0] = {3, 2, 3};
+    projects[1] = {2, 2, 4};
+    projects[2] = {1, 2, 3};
+    sort(projects.begin(), projects.end());
+    for(auto it : projects) cout << it.start << " " << it.end << " " << it.value << endl;
 
-// }
+}
 
 #include <bits/stdc++.h>
 using namespace std;

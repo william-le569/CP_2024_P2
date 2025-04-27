@@ -51,58 +51,58 @@
 
 /// Ref 2:
 
-#include <iostream>
-#include <vector>
-#include <stack>
-using namespace std;
+// #include <iostream>
+// #include <vector>
+// #include <stack>
+// using namespace std;
 
-// Global variables (for simplicity)
-vector<vector<int>> adj;  // Adjacency list representation
-vector<bool> visited;     // Track visited nodes
+// // Global variables (for simplicity)
+// vector<vector<int>> adj;  // Adjacency list representation
+// vector<bool> visited;     // Track visited nodes
 
-void dfs(int x) {
-    stack<int> s;
-    s.push(x);
+// void dfs(int x) {
+//     stack<int> s;
+//     s.push(x);
     
-    while (!s.empty()) {
-        int current = s.top();
-        s.pop();
+//     while (!s.empty()) {
+//         int current = s.top();
+//         s.pop();
         
-        // Only process if not visited
-        // after popping -> mark as visited.
-        if (!visited[current]) {
-            visited[current] = true;
-            cout << current << " ";  // Process node (here just printing)
+//         // Only process if not visited
+//         // after popping -> mark as visited.
+//         if (!visited[current]) {
+//             visited[current] = true;
+//             cout << current << " ";  // Process node (here just printing)
             
-            // Push all unvisited neighbors onto stack
-            // Note: We iterate in reverse to match typical DFS order (left-to-right)
-            for (int i = adj[current].size() - 1; i >= 0; i--) {
-                int u = adj[current][i];
-                if (!visited[u]) {
-                    s.push(u);
-                }
-            }
-        }
-    }
-    cout << endl;
-}
+//             // Push all unvisited neighbors onto stack
+//             // Note: We iterate in reverse to match typical DFS order (left-to-right)
+//             for (int i = adj[current].size() - 1; i >= 0; i--) {
+//                 int u = adj[current][i];
+//                 if (!visited[u]) {
+//                     s.push(u);
+//                 }
+//             }
+//         }
+//     }
+//     cout << endl;
+// }
 
-int main() {
-    int n = 7;  // Number of nodes (0 to 6)
-    adj.resize(n);
-    visited.resize(n, false);
+// int main() {
+//     int n = 7;  // Number of nodes (0 to 6)
+//     adj.resize(n);
+//     visited.resize(n, false);
 
-    // Same graph as BFS example
-    adj[1].push_back(2);
-    adj[1].push_back(3);
-    adj[2].push_back(4);
-    adj[2].push_back(5);
-    adj[3].push_back(6);
+//     // Same graph as BFS example
+//     adj[1].push_back(2);
+//     adj[1].push_back(3);
+//     adj[2].push_back(4);
+//     adj[2].push_back(5);
+//     adj[3].push_back(6);
 
-    cout << "DFS starting from node 1: ";
-    dfs(1);
-    return 0;
-}
+//     cout << "DFS starting from node 1: ";
+//     dfs(1);
+//     return 0;
+// }
 
 
 //--- attempt 1
@@ -160,49 +160,49 @@ int main() {
 
 // attempt 2: --- mar - 17 -2025
 
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-vector<vector<int>> adj;
-vector<bool> visited;
+// vector<vector<int>> adj;
+// vector<bool> visited;
 
-void dfs(int x) {
-    stack<int> st;
-    // kick start
-    st.push(x);
-    // visited[x] = true;
+// void dfs(int x) {
+//     stack<int> st;
+//     // kick start
+//     st.push(x);
+//     // visited[x] = true;
 
-    while(!st.empty()) {
-        int s = st.top();
-        st.pop();
-        if(!visited[s]) {
-            cout << s << " ";
-            visited[s] = true;
-        }
-        for(auto it = adj[s].rbegin(); it != adj[s].rend(); ++it) {
-            // visited[*it] = true;
-            if(!visited[*it]) {
-                st.push(*it);
-            }
-        }
-    }
+//     while(!st.empty()) {
+//         int s = st.top();
+//         st.pop();
+//         if(!visited[s]) {
+//             cout << s << " ";
+//             visited[s] = true;
+//         }
+//         for(auto it = adj[s].rbegin(); it != adj[s].rend(); ++it) {
+//             // visited[*it] = true;
+//             if(!visited[*it]) {
+//                 st.push(*it);
+//             }
+//         }
+//     }
 
-}
+// }
 
-int main() {
-    int n = 7;
-    adj.resize(n);
-    visited.resize(n, false);
-    adj[1].push_back(2);
-    adj[1].push_back(3);
-    adj[2].push_back(4);
-    adj[2].push_back(5);
-    adj[3].push_back(6);
+// int main() {
+//     int n = 7;
+//     adj.resize(n);
+//     visited.resize(n, false);
+//     adj[1].push_back(2);
+//     adj[1].push_back(3);
+//     adj[2].push_back(4);
+//     adj[2].push_back(5);
+//     adj[3].push_back(6);
 
-    dfs(1);
+//     dfs(1);
 
-    return 0;
-}
+//     return 0;
+// }
 
 
 
@@ -223,3 +223,43 @@ int main() {
 //         }
 //     }
 // }
+
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> adj;
+vector<bool> visited;
+
+void dfs(int x) {
+    stack<int> st;
+    st.push(x);
+    visited[x] = true;
+
+    while(!st.empty()) {
+        int s = st.top();
+        st.pop();
+        if(visited[s]) {
+            cout << s << endl;
+        }
+        for(auto it = adj[s].rbegin(); it!= adj[s].rend(); it++) {
+            if(!visited[*it]) {
+                st.push(*it);
+                visited[*it] = true;
+            }
+        }
+    }
+}
+
+int main() {
+    int n = 6;
+    adj.resize(n);
+    visited.resize(n, false);
+
+    adj[1].push_back(2);
+    adj[2].push_back(3);
+    adj[1].push_back(4);
+    adj[2].push_back(5);
+
+    dfs(1);
+    return 0;
+}
